@@ -1,14 +1,15 @@
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
-## Para correr el app
+## Utilidad
 
-Clonar el proyecto, asegurarse de tener instalado ionic.
-
-Luego:
-
-```bash
-$ npm install
-$ ionic serve
-```
+·Creación de proyectos en blanco.
+·Reproducir sonidos
+·Uso de componentes como el ion-list y ion-items
+·Usar directivas de Angular
+·Evento click/tap
+·Hacer 'pull' para refrescar nuestra app
+·Deslizar para eliminar
+·Cambiar el orden de los elementos de una lista
+·Uso de elementos estáticos para nuestra app
 
 
