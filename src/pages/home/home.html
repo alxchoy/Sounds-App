@@ -1,14 +1,49 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      Ionic Blank
+      Sounds APP
     </ion-title>
+    <ion-buttons end>
+      <button ion-button *ngIf="!ordenando" (click)="!ordenando = true">Ordenar</button>
+      <button ion-button *ngIf="ordenando" (click)="ordenando = false">Listo</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+
+  <!-- Refresher: recarga la pagina, se indica si esta enables(habilitada) y se le pasa una funcion (ionRefresh) que ejecutara al recargar -->
+  <ion-refresher [enabled]="!ordenando" (ionRefresh)="recargarAnimales($event)">
+    <ion-refresher-content
+      pullingText="Cargar lista"
+      refreshingText="Cargando lista de animales">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <!-- Una lista puede indicar si tiene la opcion de reorder y de ser asi tambien tiene una funcion que se ejecutara ionItemReorder -->
+  <ion-list [reorder]="ordenando" (ionItemReorder)="reordenarAnimales($event)">
+
+    <ion-item-sliding *ngFor="let animal of animales; let i = index">
+
+      <ion-item  (click)="reproducir(animal)">
+        <ion-avatar item-left>
+          <img [src]="animal.imagen">
+        </ion-avatar>
+        <h2>{{ animal.nombre }}</h2>
+  
+        <ion-icon *ngIf="!animal.reproduciendo" name="play" item-right></ion-icon>
+        <ion-icon *ngIf="animal.reproduciendo" name="pause" item-right></ion-icon>
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="borrarAnimal(i)">
+          <ion-icon name="trash"></ion-icon>
+          Borrar
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+
 </ion-content>
